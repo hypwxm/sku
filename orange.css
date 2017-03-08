@@ -1,0 +1,317 @@
+*{
+    font-family:"微软雅黑";
+    white-space:nowrap;
+    padding:0;
+    margin:0;
+    border:0;
+    list-style:none;
+    text-decoration: none;
+    background: #fff;
+}
+input[type="submit"], input[type="button"], input[type="radius"], input[type="date"] {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+.SelParent {
+    height: 100%;
+    overflow:hidden;
+    box-shadow:0 0 10px #999 inset;
+    margin: 15px;
+    padding:15px;
+}
+.parentList{
+    display:-webkit-box;
+    height:auto;
+    margin-bottom:15px;
+    border-bottom:2px dashed #ccc;
+}
+.childlist{
+    -webkit-box-flex:1;
+    font-size:14px;
+    align-items: center;
+    overflow:hidden;
+    padding:10px;
+}
+.parenteachname{
+    font-size:16px;
+    color:#999;
+    width:60px;
+    text-align:left;
+    line-height:50px;
+}
+.eachchild{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid #ececec;
+    padding:4px 15px;
+    margin-right:20px;
+    margin-bottom:15px;
+    cursor:pointer;
+    border-radius:5px;
+    color:#888;
+    box-shadow:0 0 10px 0 #ababab;
+    float:left;
+}
+.hchecked{
+    background:#f1691b;
+    color:#fff;
+    border:1px solid #f1691b;
+    box-shadow:0 0 10px 0 #f1691b;
+}
+.chk_sku {
+    display: none;
+}
+
+.chk_sku + label {
+    background-color: #FFF;
+    border: 1px solid #a3c2c2;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 9px;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+    width: auto;
+    color: #669999;
+    margin-bottom:15px;
+}
+
+.chk_sku + label:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chk_sku:checked + label {
+    background-color: #ECF2F7;
+    border: 1px solid #92A1AC;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+    color: #5c8a8a;
+    font-weight: bold;
+}
+
+.sku_box {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.chk_sku:checked + label:after {
+    content: '\2714';
+/ / ��ѡ���� position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #758794;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4em;
+    padding: 1px 0 0 0;
+    vertical-align: text-top;
+}
+
+
+.sku_box span {
+    float: left;
+    width: auto;
+    height: 21px;
+    line-height: 21px;
+    padding-top: 9px;
+    font-weight: bold;
+    color: #476b6b;
+    margin-right:15px;
+    margin-bottom:15px;
+}
+.bigbox{
+    display:-webkit-box;
+    border-left:1px solid #999;
+}
+.extypebox,.bossbox{
+    border-right:1px solid #999;
+    border-bottom:1px solid #999;
+    border-top:1px solid #999;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width:120px;
+    overflow:hidden;
+}
+.bossbox:first-child{
+    border-left:1px solid #999;
+}
+.exboxchild,.childbox{
+    border-top:1px solid #999;
+    line-height:40px;
+    color:#666;
+    text-align:center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0 10px;
+    display:-webkit-box;
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
+    height:40px;
+    width:120px;
+    position:relative;
+}
+.jsonbtn{
+    width:100px;
+    height:40px;
+    color:#fff;
+    background: #f1691b;
+    text-align:center;
+    line-height:40px;
+    border-radius:5px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    cursor:pointer;
+}
+.exboxchild{
+    border-right:1px solid #999;
+}
+.exboxchild input{
+    display:block;
+    width:100%;
+    height:100%;
+    outline:0;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+.exbossbox{
+    border-top:1px solid #999;
+    border-bottom:1px solid #999;
+}
+.boxtitle{
+    height:35px;
+    text-align:center;
+    line-height:35px;
+    color:#888;
+    padding:0 10px;
+    overflow:hidden;
+}
+.extypetitle{
+    height:35px;
+    text-align:center;
+    line-height:35px;
+    color:#888;
+    padding:0 10px;
+    border-right:1px solid #999;
+    -webkit-box-flex:1;
+    width:120px;
+}
+
+.exboxchild input{
+    border:0;
+    padding:0;
+    margin:0;
+    display:block;
+    width:100%;
+    height:100%;
+    text-align:center;
+    line-height:40px;
+    float:none!important;
+}
+.extitlebox{
+    display:-webkit-box;
+}
+.exconeach{
+    display:-webkit-box;
+}
+.tabledomplace{
+    display:-webkit-box;
+    position:relative;
+    padding-bottom:60px;
+    margin:15px;
+}
+.tabledomplace div{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.pafirst{
+    overflow:hidden;
+    margin:15px;
+    border:1px solid #ccc;
+    padding:15px;
+    box-shadow:0 0 10px #999 inset;
+}
+.pafirst >div{
+    float:left;
+    border:1px solid #ccc;
+    color:#666;
+    border-radius:4px;
+    font-size:16px;
+    padding:4px 8px;
+    margin-right:15px;
+    margin-bottom:15px;
+    cursor:pointer;
+    box-shadow:0 0 10px 0 #ababab;
+}
+.pafirst .fpachoosen{
+    background: #f1691b;
+    color:#fff;
+    border:1px solid #f1691b;
+    box-shadow:0 0 10px 0 #f1691b;
+}
+.searchfirstbox{
+
+}
+.fsearchintop{
+    width:80%;
+    height:40px;
+    border:1px solid #ccc;
+    background: #f1f1f1;
+    border-radius:5px;
+    margin:15px;
+    overflow:hidden;
+    display:block;
+    padding-left:15px;
+    font-size:16px;
+}
+.fsearchintop:focus{
+    background: #fff;
+    transition: all 0.3s;
+    box-shadow:0 0 10px 0 #07c3f9;
+    border:1px solid #07c3f9;
+}
+.orange-sel-view{
+    width:100%;
+    height:100%;
+    background: url(arrowr.png) no-repeat right center/25px;
+    cursor:pointer;
+}
+.orange-sel{
+
+    width:100%;
+    height:0;
+    position:absolute;
+    left:0;
+    top:100%;
+    cursor:pointer;
+    overflow:hidden;
+    z-index:10;
+}
+.orange-opt{
+    height:40px;
+    width:100%;
+    text-align:left;
+    border-bottom:1px solid #ccc;
+    color:#444;
+    line-height:40px;
+    font-size:16px;
+    padding:0 8px;
+}
+.orange-sel-open{
+    height:auto;
+    max-height:400px;
+    overflow-y:scroll;
+    border:1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0;
+    border-radius:5px;
+    box-shadow:0 0 10px 0 #999;
+}
+.orange-opt-choosen{
+    background:#f2f2f2;
+}
