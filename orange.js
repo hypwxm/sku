@@ -18,7 +18,7 @@ function DomChoose(obj) {
     this.olddata = obj.olddata;
     this.firstParent();
     //this.setSelParent();
-    
+    this.splitKey = "@#@#@#@#@#@#@";
     this.afterDomCreated = obj.afterDomCreated;//每次表格创建完成是执行的回调函数；
     this.afterDataChanged = obj.afterDataChanged;//对表格中的数据进行修改时持续调用的回调函数
 
@@ -244,14 +244,12 @@ DomChoose.prototype = {
 
                 if (_list[j].classList.contains("hchecked")) {
                     eachlie["num" + index].len++;
-                    eachlie["num" + index].child.push(_list[j].innerHTML + "," + _list[j].dataset.childid);
+                    eachlie["num" + index].child.push(_list[j].innerHTML + that.splitKey + _list[j].dataset.childid);
                 }
 
             }
 
             for (var i = 0; i < _list.length; i++) {
-
-
                 if (_list[i].classList.contains("hchecked")) {
                     row++;
                     eachlie["num" + index].havechild = "true";
@@ -305,10 +303,12 @@ DomChoose.prototype = {
             boxtitle.className = "boxtitle";
             bossbox.appendChild(boxtitle);
             for (var i = 0; i < prebosslen; i++) {
+                console.log(ele)
                 ele["child"].forEach(function (item, index) {
                     var box = document.createElement("div");
                     box.className = "childbox box" + index;
-                    var nameAid = item.split(",");
+                    console.log(item);
+                    var nameAid = item.split(that.splitKey);
                     box.innerHTML = nameAid[0];
                     box.setAttribute("id", nameAid[1]);
                     box.style.height = arrHeight[nowban] + "px";
@@ -585,7 +585,8 @@ DomChoose.prototype = {
         allele.forEach(function (item) {
             var _arr = [];
             item.child.forEach(function (item) {
-                _arr.push(item.split(",")[1])
+                console.log(item)
+                _arr.push(item.split(that.splitKey)[1])
             });
             allchildcombin.push(_arr);
         });
@@ -671,6 +672,7 @@ DomChoose.prototype = {
 
             });
             _json[index].pid = that.pid.toString();
+            console.log(that.allCombin);
             _json[index].childid = that.allCombin[index].toString();
             _json[index].text = text;
         });
