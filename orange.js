@@ -303,11 +303,9 @@ DomChoose.prototype = {
             boxtitle.className = "boxtitle";
             bossbox.appendChild(boxtitle);
             for (var i = 0; i < prebosslen; i++) {
-                console.log(ele)
                 ele["child"].forEach(function (item, index) {
                     var box = document.createElement("div");
                     box.className = "childbox box" + index;
-                    console.log(item);
                     var nameAid = item.split(that.splitKey);
                     box.innerHTML = nameAid[0];
                     box.setAttribute("id", nameAid[1]);
@@ -506,7 +504,6 @@ DomChoose.prototype = {
         var pid, childid, typename;
         var olddata = that.getOldData();
         if(!olddata) return;
-        console.log("olddata:%t", olddata);
         var input = makeArray(document.querySelectorAll(".exbossbox input"));
         input.forEach(function(item) {
             pid = item.dataset.pid;
@@ -585,47 +582,82 @@ DomChoose.prototype = {
         allele.forEach(function (item) {
             var _arr = [];
             item.child.forEach(function (item) {
-                console.log(item)
                 _arr.push(item.split(that.splitKey)[1])
             });
             allchildcombin.push(_arr);
         });
 
-        var showtimes = [];
-        var timesback = [];
-        for (var j = allchildcombin.length; j > 1; j--) {
-            if (!allchildcombin[j]) {
-                showtimes.unshift(allchildcombin[j - 1].length);
-            } else {
-                showtimes.unshift(allchildcombin[j].length * allchildcombin[j - 1].length);
+
+        var needtime = [];
+        allchildcombin.forEach(function(item, index) {
+            if(index == allchildcombin.length - 1) return;
+            var prevHave = 1;
+            for(var c = index + 1 ; c < allchildcombin.length; c++) {
+                prevHave *= allchildcombin[c].length;
             }
+            needtime.push(prevHave)
+        });
 
-        }
-        for (var z = allchildcombin.length; z > 0; z--) {
-            if (!allchildcombin[z]) {
-                timesback.unshift(allchildcombin[z - 1].length);
-            } else {
-                timesback.unshift(timesback[0] * allchildcombin[z - 1].length);
-            }
-
-        }
-
+        needtime.push(1);
         var lastchild = allchildcombin[allchildcombin.length - 1];
-        for (var i = 0; i < allbox; i++) {
-            allnewcombin[i] = [];
-            (function (i) {
-                allchildcombin.forEach(function (item, index, arg) {
 
-                    var nowban = i - (Math.floor(i / timesback[index]) * timesback[index]);
-                    if (index < arg.length - 1) {
-                        allnewcombin[i].push(item[Math.floor(nowban / showtimes[index])]);
-                    } else {
-                        allnewcombin[i].push(item[i % lastchild.length]);
-                    }
-                })
-            })(i);
+        //console.log(showtimes, timesback, allbox, allchildcombin)
+        //[12, 20, 5] [60, 60, 20, 5] 60 [Array[1], Array[3], Array[4], Array[5]]
+
+        ///*获取所有组合*/
+        var childlen = allchildcombin.length;
+        for (var i = 0; i < allbox; i++) {
+            if(needtime.length == 0) break;
+            allnewcombin[i] = [];
+
+            allchildcombin.forEach(function (item, index, arg) {
+                var _need = needtime[index];
+
+                var nowban;
+                //目前要取的item的第几个，
+                nowban = Math.floor(i / _need);
+
+
+                //如果要取的索引大于item的长度，进行取余
+                if(nowban >= item.length) {
+                    nowban = nowban % item.length;
+                }
+
+                allnewcombin[i].push(item[nowban]);
+
+            })
 
         }
+
+
+        /*//获取bossbox的
+        var allPType = [];
+        var bossBox = makeArray($$(".bossbox", true));
+        //将bossbox里面的每一级的id放到各自数组
+        bossBox.forEach(function(item, index) {
+            allPType[index] = [];
+            makeArray(item.querySelectorAll(".childbox")).forEach(function(item2) {
+                var id = item2.getAttribute("id");
+                allPType[index].push(id);
+            })
+        });
+        console.log(allPType)
+
+        for(var i = allPType.length - 1; i > 0; i--) {
+            var finalarr = [];
+            //从后往前将id放入
+            var bl = allPType[i].length / allPType[i - 1].length;
+
+            var prev = allPType[i - 1];
+            prev.forEach(function(item3) {
+                var _arr = [];
+                for(var j = 0; j < bl; j++) {
+                    _arr.push([item3, allPType[i][j]])
+                }
+
+            });
+
+        }*/
 
         this.allCombin = allnewcombin;
         makeArray(this.tabledom.querySelectorAll(".exconeach")).forEach(function (item, index) {
@@ -672,7 +704,6 @@ DomChoose.prototype = {
 
             });
             _json[index].pid = that.pid.toString();
-            console.log(that.allCombin);
             _json[index].childid = that.allCombin[index].toString();
             _json[index].text = text;
         });
